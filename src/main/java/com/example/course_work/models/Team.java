@@ -1,23 +1,22 @@
 package com.example.course_work.models;
 
+
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tournaments")
-public class Tournament {
+@Table(name = "teams")
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
-    private String start_date;
-    private String end_date;
-    private String location;
-
-    // Getters and Setters
+    private Long tournament_id;
 }

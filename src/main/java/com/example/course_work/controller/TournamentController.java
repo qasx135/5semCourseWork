@@ -9,7 +9,7 @@ import com.example.course_work.models.Tournament;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tournaments")
+@RequestMapping("/tournaments")
 public class TournamentController {
 
     @Autowired
