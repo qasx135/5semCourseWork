@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Турнирное Приложение</title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="#" id="tournaments-tab">Турниры</a></li>
+        <li><a href="#" id="teams-management-tab">Управление Командами</a></li>
+        <li><a href="#" id="add-players-tab">Добавление Игроков</a></li>
+    </ul>
+</nav>
+
+<div id="content">
+    <!-- Вкладка "Турниры" -->
+    <div id="tournaments" class="tab-content">
+        <h2>Добавить Турнир</h2>
+        <form id="tournament-form">
+            <input type="text" id="tournament-name" placeholder="Название турнира" required>
+            <input type="text" id="tournament-location" placeholder="Место проведения" required>
+            <textarea id="tournament-description" placeholder="Описание турнира" required></textarea>
+            <input type="date" id="tournament-start-date" required>
+            <input type="date" id="tournament-end-date" required>
+            <button type="submit">Добавить Турнир</button>
+        </form>
+        <div id="tournament-list"></div>
+    </div>
+
+    <!-- Вкладка "Управление Командами" -->
+    <div id="teams" class="tab-content" style="display:none;">
+        <h2>Создать Команду</h2>
+        <form id="team-form">
+            <select id="tournament-select">
+                <option value="">Выберите Турнир</option>
+            </select>
+            <input type="text" id="team-name" placeholder="Название команды" required>
+            <input type="text" id="team-rating" placeholder="Рэйтинг команды" required>
+            <button type="submit">Создать Команду</button>
+        </form>
+        <div id="team-list"></div>
+    </div>
+
+    <!-- Вкладка "Добавление Игроков" -->
+    <div id="add-players" class="tab-content" style="display:none;">
+        <h2>Добавить Игрока в Команду</h2>
+        <form id="player-form">
+            <select id="team-select">
+                <option value="">Выберите Команду</option>
+            </select>
+            <input type="text" id="player-name" placeholder="Имя Игрока" required>
+            <input type="text" id="player-age" placeholder="Возраст Игрока" required>
+            <button type="submit">Добавить Игрока</button>
+        </form>
+        <div id="player-list"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

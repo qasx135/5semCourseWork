@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input, select, textarea, button {
+    display: block;
+    margin: 10px 0;
+}
