@@ -40,6 +40,33 @@ document.getElementById('tournament-form').addEventListener('submit', async (e) 
     }
 });
 
+document.getElementById('tournament-delete').addEventListener('submit', async (e) =&gt; {
+    e.preventDefault();
+    const id = document.getElementById('tournament-delete-id').value;
+
+    if (!id) {
+        alert('Пожалуйста, введите ID турнира.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/tournaments/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert('Турнир удален!');
+            document.getElementById('tournament-form').reset();
+            loadTournaments();
+        } else {
+            alert('Ошибка при удалении турнира.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при выполнении запроса.');
+    }
+});
+
 // Загрузить турниры
 async function loadTournaments() {
     const response = await fetch('/tournaments');
@@ -49,7 +76,6 @@ async function loadTournaments() {
     tournamentList.innerHTML = '';
     tournaments.forEach(tournament => {
         const div = document.createElement('div');
-        console.log("lol,")
         div.textContent = `(${tournament.id}  ${tournament.name} ${tournament.location})`;
         tournamentList.appendChild(div);
 
