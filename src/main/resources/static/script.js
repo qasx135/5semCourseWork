@@ -19,8 +19,8 @@ document.getElementById('tournament-form').addEventListener('submit', async (e) 
         name: document.getElementById('tournament-name').value,
         location: document.getElementById('tournament-location').value,
         description: document.getElementById('tournament-description').value,
-        startDate: document.getElementById('tournament-start-date').value,
-        endDate: document.getElementById('tournament-end-date').value
+        start_date: document.getElementById('tournament-start-date').value,
+        end_date: document.getElementById('tournament-end-date').value
     };
 
     const response = await fetch('/tournaments', {
@@ -40,7 +40,7 @@ document.getElementById('tournament-form').addEventListener('submit', async (e) 
     }
 });
 
-document.getElementById('tournament-delete').addEventListener('submit', async (e) =&gt; {
+document.getElementById('tournament-delete').addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = document.getElementById('tournament-delete-id').value;
 
@@ -127,6 +127,33 @@ document.getElementById('team-form').addEventListener('submit', async (e) => {
         alert('Ошибка при создании команды.');
     }
 });
+//delete teams
+document.getElementById('team-delete').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('team-delete-id').value;
+
+    if (!id) {
+        alert('Пожалуйста, введите ID команды.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/teams/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert('Команда удалена!');
+            document.getElementById('team-form').reset();
+            loadTournaments();
+        } else {
+            alert('Ошибка при удалении команды.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при выполнении запроса.');
+    }
+});
 
 // Загрузить команды для выбранного турнира
 async function loadTeams() {
@@ -138,7 +165,7 @@ async function loadTeams() {
     teamList.innerHTML = '';
     teams.forEach(team => {
         const div = document.createElement('div');
-        div.textContent = team.name;
+        div.textContent = `(${team.id} ${team.name})`;
         teamList.appendChild(div);
 
         const option = document.createElement('option');
@@ -187,6 +214,33 @@ document.getElementById('player-form').addEventListener('submit', async (e) => {
         alert('Ошибка при добавлении игрока.');
     }
 });
+//delete player
+document.getElementById('player-delete').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('player-delete-id').value;
+
+    if (!id) {
+        alert('Пожалуйста, введите ID игрока.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/players/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert('Игрок удален!');
+            document.getElementById('player-form').reset();
+            loadTournaments();
+        } else {
+            alert('Ошибка при удалении игрока.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при выполнении запроса.');
+    }
+});
 
 // Загрузить игроков для выбранной команды
 async function loadPlayers() {
@@ -198,7 +252,7 @@ async function loadPlayers() {
     playerList.innerHTML = '';
     players.forEach(player => {
         const div = document.createElement('div');
-        div.textContent = player.name;
+        div.textContent = `(${player.id} ${player.name})`;
         playerList.appendChild(div);
     });
 }
