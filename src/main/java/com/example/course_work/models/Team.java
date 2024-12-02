@@ -1,6 +1,5 @@
 package com.example.course_work.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

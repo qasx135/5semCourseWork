@@ -19,5 +19,4 @@ public class Tournament {
     private String end_date;
     private String location;
 
-    // Getters and Setters
 }
